@@ -1,0 +1,6 @@
+git clone https://github.com/talbert48/milliq.git
+source g4env_lxplus.csh
+cd milliq/geant4
+gmake
+
+MilliQ ../RootAnalysis/mcp.mac

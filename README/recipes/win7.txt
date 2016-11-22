@@ -1,0 +1,52 @@
+Tested on Win7 32bit
+
+1) Download/install CMake 3.4.3
+https://cmake.org/download/
+(add cmake to system PATH for all/current users)
+
+2) Download/install Visual Studio 2015
+https://www.visualstudio.com/post-download-vs?sku=community&clcid=0x409
+(VS Community 2015 w/Update 1 is free)
+be sure to do custom install, and select VC++: Common tools for visual c++ 2015
+
+2) Download geant4 10.02
+http://geant4.web.cern.ch/geant4/support/download.shtml
+
+3) Extract geant4_10_02.zip to some directory
+(eg C:\geant4\)
+
+4) Now generally follow the instructions in chapter 2.2 of:
+http://gentoo.osuosl.org/distfiles/BookInstalGuide-4.10.1.pdf
+This is for version 10.1 but will work just the same for 10.2
+Always (!!) run cmake and visual studio as administrator (right-click --> run as admin)
+NB: building geant4 takes a long (LONG) time
+NB: When you choose the Generator, choose the correct architecture for VS 2015. If you have a 32bit system choose VS
+
+5) Download the MilliQ repository:
+https://github.com/talbert48/milliq
+ie "git clone" or download as zip from the website
+Put it somewhere convient (eg C:\geant4\milliq-master\milliq-master\)
+
+6) Make a build folder
+(eg C:\geant4\milliq-build\)
+Follow the instructions in chapter 3.2.1.2 of http://gentoo.osuosl.org/distfiles/BookInstalGuide-4.10.1.pdf
+except for milliq instead of ExampleB1
+The source directory for cmake is something like C:\geant4\milliq-master\geant4\
+
+7) Download the physics data:
+https://drive.google.com/folderview?id=0ByB-4FDSD9R6WGptS0kxTjhkU1U&usp=sharing
+unzip it somewhere convenient
+(eg C:\geant4\acceptances_v3\)
+
+Edit milliq-master\milliq-master\geant4\src\MilliQPrimaryGeneratorAction.cc
+on line 205, change the path to where you put the data:
+std::string pathname="C:\\geant4\\acceptances_v3\\mCP_UFO\\";
+
+Build MilliQ again in VS.
+
+8) Now to run, copy milliq-master\RootAnalysis\mcp.mac into milliq-build\Release
+Also copy milliq-build\*.mac into milliq-build\Release
+You can edit vis.mac to use OGLSWin32 instead:
+/vis/open OGLSWin32
+
+9) Finally run milliq-build/Release/MilliQ.exe as admin

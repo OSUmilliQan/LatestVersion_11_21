@@ -1,0 +1,16 @@
+Here, since the simulation is a work in progress, we list a number of features that you shouldn't trust.
+Current development effort until the December 2016 meeting in NY is aimed at fixing these.
+
+
+	* Everything associated with the Resistance, Gain, tCurrent, Charge, MaxWaveform, and Waveform 
+	  and their units are currently likely numerically wrong. That said, all structures, classes, 
+	  containers, calculations, etc in G4 simulation are coded. Minor changes will fix these.
+	* There is currently nothing to retrieve the output of the simulation after the Online trigger
+	* The simulation is not rhobust against changing number of stacks from 3 to something else, 
+	  and changing number of pmts, scintillators, and their size (the shield is hardcoded, doesn't yet behave nicely)
+	* dE/dx currently does not output smoothly.
+	* Can't specify choice of particles in particles.ini 
+	* DavidStuart.ini configurations currently doesn't work well
+	* OSU setup currently doesn't work / is not specified
+	* Total energy deposit is outputting nonsense
+	* Can't choose triggering strategy in offline analysis

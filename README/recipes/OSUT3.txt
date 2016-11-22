@@ -1,0 +1,13 @@
+git clone https://github.com/talbert48/milliq.git
+git clone https://github.com/bpf6qc/milliq.git osu-milliq
+cd osu-milliq/geant/
+source g4env_osut3.csh
+cd ..
+mkdir build
+cd build
+cmake -DGeant4_DIR=/cvmfs/geant4.cern.ch/geant4/10.2/x86_64-slc6-gcc49-opt/lib64/Geant4-10.2.0/ /path/to/milliq/geant4/
+sed -i 's|-lexpat|/cvmfs/sft.cern.ch/lcg/external/expat/2.0.1/x86_64-slc6-gcc48-opt/lib/libexpat.so|g' CMakeFiles/MilliQ.dir/link.txt
+sed -i 's|/usr/lib64/libexpat.so|/cvmfs/sft.cern.ch/lcg/external/expat/2.0.1/x86_64-slc6-gcc48-opt/lib/libexpat.so|g' CMakeFiles/MilliQ.dir/build.make
+make -j 4
+
+./MilliQ ../milliq/RootAnalysis/mcp.mac

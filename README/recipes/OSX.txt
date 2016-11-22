@@ -1,0 +1,44 @@
+Tested with OSX Yosemite 10.10.5
+
+1) Install homebrew (http://brew.sh/)
+1a) Use it to install cmake:
+
+brew install cmake
+brew install boost
+
+2) Download geant4 version 10.2.0 (http://geant4.web.cern.ch/geant4/support/download.shtml)
+3) Execute the following (the make command takes a long time):
+
+cd ~
+cp ~/Downloads/geant4.10.02.tar.gz .
+tar -xzf geant4.10.02.tar.gz
+rm geant4.10.02.tar.gz
+mkdir geant4.10.02-build
+mkdir geant4.10.02-install
+cd geant4.10.02-build
+cmake -DCMAKE_INSTALL_PREFIX=/Users/${USER}/geant4.10.02-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON /Users/${USER}/geant4.10.02
+
+make -j4
+make install
+
+4) Now make a work area (here called ~/YOUR_WORK_AREA/) and do the following in it:
+
+git clone https://github.com/talbert48/milliq.git
+mkdir build
+cd build
+cmake -DGeant4_DIR=/Users/${USER}/geant4.10.02-install/lib/Geant4-10.2.0/ /Users/${USER}/YOUR_WORK_AREA/milliq/geant4/
+make
+
+5) Modify your ~/.profile with
+
+alias setupGeant4='source ~/geant4.10.02-install/share/Geant4-10.2.0/geant4make/geant4make.sh’
+
+6) Run it interactively with:
+
+cd ~/YOUR_WORK_DIR/build
+./MilliQ
+
+7) Run a macro:
+
+cd ~/YOUR_WORK_DIR/build
+./MilliQ ../milliq/RootAnalysis/mcp.mac
