@@ -1,0 +1,5 @@
+Function SurfaceProperties in DetectorBlockLV needs work, currently just thrown together
+Material for Photocathode is just aluminum
+Function DefineMaterials in DetectorConstruction is just thrown together
+
+Stack rotation is ignored for now

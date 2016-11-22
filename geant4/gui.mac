@@ -1,0 +1,29 @@
+
+# Add icons of general interest
+/control/execute icons.mac
+# User defined icon :
+/gui/addIcon "Run beam on" user_icon "/run/beamOn 1" run.png 
+
+
+#
+# Menus
+#
+
+# File menu :
+/gui/addMenu file File
+/gui/addButton file Quit "exit"
+
+# Run menu :
+/gui/addMenu run Run
+/gui/addButton run "initialize" "/run/initialize"
+/gui/addButton run "beamOn 1" "/run/beamOn 1"
+/gui/addButton run "beamOn 100" "/run/beamOn 100"
+
+
+# Gun menu :
+/gui/addMenu gun Gun
+/gui/addButton gun "1 MeV"  "/gun/energy 1 MeV"
+/gui/addButton gun "1 GeV"   "/gun/energy 1 GeV"
+/gui/addButton gun "511 keV"  "/gun/energy 511 keV"
+/gui/addButton gun "e-"      "/gun/particle e-"
+/gui/addButton gun "gamma"     "/gun/particle gamma"
